@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GenshinLauncher (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "GenshinLauncher (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
