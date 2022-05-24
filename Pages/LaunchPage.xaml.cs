@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using PInvoke;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,6 +15,8 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
+using WinUIEx;
+using GenshinLauncher;
 using GenshinLauncher.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -26,17 +29,24 @@ namespace GenshinLauncher.Pages
     /// </summary>
     public sealed partial class LaunchPage
     {
+
         public LaunchPage()
         {
             this.InitializeComponent();
-
-            
         }
 
-        private void LaunchButton_Click(SplitButton sender, SplitButtonClickEventArgs args)
+        private void LaunchButton_Click(SplitButton sender, SplitButtonClickEventArgs args) => GameLaunch();
+
+        private async void GameLaunch()
         {
-            LaunchTask launchTask = new LaunchTask();
-            launchTask.RunGame(@"E:\Genshin Impact\launcher.exe");
+            TextBlock_Launch.Text = "启动中";
+            LaunchButton.IsEnabled = false;
+
+            Task GameTask = LaunchTask.RunGame(@"E:\Genshin Impact\launcher.exe");
+            await GameTask;
+
+            TextBlock_Launch.Text = "启动游戏";
+            LaunchButton.IsEnabled = true;
         }
     }
 }
