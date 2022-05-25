@@ -53,7 +53,15 @@
 
         <Grid Grid.Row="1">
             <Image Source="/Images/DefaultBG.png" Stretch="UniformToFill"/>
-            <Frame Name="MainView"/>
+            
+            <Frame Name="MainFrame">
+                <Frame.ContentTransitions>
+                    <TransitionCollection>
+                        <NavigationThemeTransition/>
+                    </TransitionCollection>
+                </Frame.ContentTransitions>
+            </Frame>
         </Grid>
+        
     </Grid>
 </Window>

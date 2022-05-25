@@ -30,7 +30,6 @@ namespace GenshinLauncher
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-
         private AppWindow _apw;
         private OverlappedPresenter _presenter;
 
@@ -52,7 +51,7 @@ namespace GenshinLauncher
             _presenter.IsResizable = false;
             //重设标题栏样式
             _apw.Title = "原神";
-            _apw.SetIcon("/Images/Logo.ico");
+            //_apw.SetIcon("/Images/Logo.ico");
             _apw.TitleBar.ExtendsContentIntoTitleBar = true;
             _apw.TitleBar.ButtonBackgroundColor = Colors.Black;
             _apw.TitleBar.ButtonHoverBackgroundColor = Colors.Black;
@@ -69,7 +68,7 @@ namespace GenshinLauncher
             //_presenter.SetBorderAndTitleBar(false, false);
 
             //显示LaunchPage
-            MainView.Navigate(typeof(Pages.LaunchPage));
+            MainFrame.Navigate(typeof(Pages.LaunchPage));
         }
 
         public void GetAppWindowAndPresenter()
@@ -82,7 +81,7 @@ namespace GenshinLauncher
 
         private void TitleBarButton_Setting_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(typeof(Pages.SettingPage));
         }
     }
 }

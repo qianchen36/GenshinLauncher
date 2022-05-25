@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml.Controls;
 
-using GenshinLauncher.Pages;
-
 namespace GenshinLauncher.Tasks
 {
     static public class LaunchTask

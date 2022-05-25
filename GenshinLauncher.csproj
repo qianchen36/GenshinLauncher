@@ -19,6 +19,10 @@
     <DebugType>full</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Pages\SettingPage.xaml" />
+    <None Remove="Pages\Style\PageDictionary.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Images\DefaultBG.png" />
     <Content Include="Images\Logo.ico" />
   </ItemGroup>
@@ -42,7 +46,17 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Pages\SettingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Page\LaunchPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\Style\PageDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
