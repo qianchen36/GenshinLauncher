@@ -30,12 +30,17 @@
 
             <StackPanel Grid.Row="1" Margin="0,20,0,0" Orientation="Vertical" VerticalAlignment="Top">
                 <Grid Margin="5,10,0,10">
+                    <TextBlock Text="官启路径" FontSize="20" VerticalAlignment="Center"/>
+                    <AutoSuggestBox Name="TextBox_LauncherPath" TextChanged="TextBox_LauncherPath_TextChanged" QuerySubmitted="TextBox_LauncherPath_QuerySubmitted" PlaceholderText="请选择官启所在目录" QueryIcon="Folder" Width="500" Margin="0,0,85,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
+                <Grid Margin="5,10,0,10">
                     <TextBlock Text="游戏路径" FontSize="20" VerticalAlignment="Center"/>
-                    <AutoSuggestBox PlaceholderText="请选择游戏目录" QueryIcon="Folder" Width="500" Margin="0,0,85,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <AutoSuggestBox Name="TextBox_GamePath" TextChanged="TextBox_GamePath_TextChanged" QuerySubmitted="TextBox_GamePath_QuerySubmitted" PlaceholderText="请选择游戏所在目录" QueryIcon="Folder" Width="500" Margin="0,0,85,0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 </Grid>
                 <Grid Margin="5,10,0,10">
                     <TextBlock Text="解锁帧率上限" FontSize="20" VerticalAlignment="Center"/>
-                    <ToggleSwitch OffContent="否" OnContent="是" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <NumberBox Name="TextBox_FPS" ValueChanged="TextBox_FPS_ValueChanged" PlaceholderText="目标帧率" Width="88" Margin="0,0,180,0" IsEnabled="{x:Bind TogggleSwitch_UnlockFPS.IsOn, Mode=OneWay}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <ToggleSwitch Name="TogggleSwitch_UnlockFPS" OffContent="否" OnContent="是" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                 </Grid>
                 <Grid Margin="5,10,0,10">
                     <TextBlock Text="启动器背景图" FontSize="20" VerticalAlignment="Center"/>
@@ -56,6 +61,8 @@
                 <TextBlock Text="22.5.25.1"  Margin="5"/>
                 <TextBlock Text="资源版本"  Margin="5"/>
                 <TextBlock Text="22.5.25.1"  Margin="5"/>
+                <TextBlock Text="游戏版本"  Margin="5"/>
+                <TextBlock Text="2.6.0"  Margin="5"/>
             </StackPanel>
         </Grid>
 
@@ -63,7 +70,7 @@
         <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <HyperlinkButton Content="米游社" NavigateUri="http://bbs.mihoyo.com/ys/" HorizontalAlignment="Right"/>
             <HyperlinkButton Content="原神官网" NavigateUri="http://ys.mihoyo.com/" HorizontalAlignment="Right"/>
-            <HyperlinkButton Content="GitHub 页面" NavigateUri="http://github.com/qianchen36/GenshinLauncher" HorizontalAlignment="Right"/>
+            <HyperlinkButton Content="GitHub 项目页面" NavigateUri="http://github.com/qianchen36/GenshinLauncher" HorizontalAlignment="Right"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -33,6 +33,8 @@ namespace GenshinLauncher
         private AppWindow _apw;
         private OverlappedPresenter _presenter;
 
+        private int pageNum;
+
         public void Maxinmize() => this.Maximize();
         public void Minimize() => this.Minimize();
 
@@ -69,6 +71,8 @@ namespace GenshinLauncher
 
             //显示LaunchPage
             MainFrame.Navigate(typeof(Pages.LaunchPage));
+            pageNum = 0;
+            this.CenterOnScreen();
         }
 
         public void GetAppWindowAndPresenter()
@@ -81,7 +85,24 @@ namespace GenshinLauncher
 
         private void TitleBarButton_Setting_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(typeof(Pages.SettingPage));
+            if (pageNum == 0)
+            {
+                MainFrame.Navigate(typeof(Pages.SettingPage));
+                pageNum = 1;
+                return;
+            }
+            if (pageNum == 1)
+            {
+                MainFrame.GoBack();
+                pageNum = 2;
+                return;
+            }
+            if (pageNum == 2)
+            {
+                MainFrame.GoForward();
+                pageNum = 1;
+                return;
+            }
         }
     }
 }

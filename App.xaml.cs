@@ -47,5 +47,8 @@ namespace GenshinLauncher
         }
 
         private Window m_window;
+
+        public static int targetFPS;
+        public static string gamePath;
     }
 }

@@ -29,13 +29,12 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <TextBlock Name="TextBlock_Launch"
-                           Grid.Row="0"
-                           Text="启动游戏"
+                <TextBlock Grid.Row="0"
+                           Text="开始游戏"
                            FontSize="20"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Bottom"/>
-                <TextBlock Name="TextBlock_ServerSelected"
+                <TextBlock Name="TextBlock_Server"
                            Grid.Row="1"
                            Text="天空岛"
                            HorizontalAlignment="Center"
