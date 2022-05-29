@@ -18,6 +18,7 @@ using Windows.Foundation.Collections;
 using WinUIEx;
 using GenshinLauncher;
 using GenshinLauncher.Tasks;
+using Microsoft.UI.Windowing;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,9 +36,7 @@ namespace GenshinLauncher.Pages
             this.InitializeComponent();
         }
 
-        private void LaunchButton_Click(SplitButton sender, SplitButtonClickEventArgs args) => GameLaunch();
-
-        private async void GameLaunch()
+        private async void LaunchButton_Click(SplitButton sender, SplitButtonClickEventArgs args)
         {
             LaunchButton.IsEnabled = false;
 

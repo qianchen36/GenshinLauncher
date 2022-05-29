@@ -26,11 +26,13 @@ namespace GenshinLauncher.Pages
         {
             this.InitializeComponent();
 
-            iniConfigerTask ini_Launcher = new();
-            ini_Launcher.Ini(@"E:\Genshin Impact\Genshin Impact Game\config.ini");
-            TextBox_LauncherPath.Text = ini_Launcher.GetValue("sdk_version", "General");
-            if (App.targetFPS != 0) TextBox_FPS.Value = App.targetFPS;
-            TextBox_GamePath.Text = Convert.ToString(App.targetFPS);
+            TextBlock_L_Ver.Text = App.launcherVer;
+            //iniConfigerTask ini_Launcher = new();
+            //ini_Launcher.Ini(@"config.ini");
+            //TextBlock_L_Ver.Text = ini_Launcher.GetValue("version", "General");
+
+            //if (App.targetFPS != 0) TextBox_FPS.Value = App.targetFPS;
+            //TextBox_GamePath.Text = Convert.ToString(App.targetFPS);
         }
 
         private void TextBox_GamePath_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -56,6 +58,11 @@ namespace GenshinLauncher.Pages
         private void TextBox_FPS_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
         {
             App.targetFPS = (int)TextBox_FPS.Value;
+        }
+
+        private void Button_CheckUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            ProgressRing_CheckUpdate.IsActive = true;
         }
     }
 }

@@ -52,9 +52,9 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <Image Source="/Images/DefaultBG.png" Stretch="UniformToFill"/>
+            <Image Name="Image_BG" Stretch="UniformToFill" Source="/Assets/defaultBG.png"/>
             
-            <Frame Name="MainFrame">
+            <Frame Name="MainFrame" CacheSize="2">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition/>

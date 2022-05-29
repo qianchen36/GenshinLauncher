@@ -16,6 +16,8 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
+using GenshinLauncher.Tasks;
+
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -48,7 +50,13 @@ namespace GenshinLauncher
 
         private Window m_window;
 
-        public static int targetFPS;
+        public static string launcherVer;
+        public static string resVer;
+        public static string gameVer;
+        public static string launcherPath;
         public static string gamePath;
+
+        public static string unlockFPS;
+        public static int targetFPS;
     }
 }

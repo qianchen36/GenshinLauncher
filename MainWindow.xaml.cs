@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -16,9 +17,10 @@ using WinRT;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics;
-using Microsoft.UI;
 
 using WinUIEx;
+using Microsoft.UI.Xaml.Media.Imaging;
+using GenshinLauncher.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -30,18 +32,21 @@ namespace GenshinLauncher
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private AppWindow _apw;
-        private OverlappedPresenter _presenter;
+        public static AppWindow _apw;
+        public static OverlappedPresenter _presenter;
 
-        private int pageNum;
-
-        public void Maxinmize() => this.Maximize();
-        public void Minimize() => this.Minimize();
+        private int pageNo;
 
         public MainWindow()
         {
             this.InitializeComponent();
 
+            InitializeTask.OnLaunch();
+            this.InitializeMainWindow();
+        }
+
+        private void InitializeMainWindow()
+        {
             //获得窗口句柄
             GetAppWindowAndPresenter();
             //默认窗口大小
@@ -53,6 +58,7 @@ namespace GenshinLauncher
             _presenter.IsResizable = false;
             //重设标题栏样式
             _apw.Title = "原神";
+            //_apw.SetIcon();
             //_apw.SetIcon("/Images/Logo.ico");
             _apw.TitleBar.ExtendsContentIntoTitleBar = true;
             _apw.TitleBar.ButtonBackgroundColor = Colors.Black;
@@ -64,18 +70,28 @@ namespace GenshinLauncher
             _apw.TitleBar.ButtonPressedForegroundColor = Colors.DimGray;
             _apw.TitleBar.ButtonInactiveForegroundColor = Colors.DimGray;
             //重设可拖拽区域大小
-            RectInt32 rect = new( 0, 0, 1050, 32);
+            RectInt32 rect = new(0, 0, 1050, 32);
             _apw.TitleBar.SetDragRectangles(new RectInt32[] { rect });
             //隐藏标题栏和边框
             //_presenter.SetBorderAndTitleBar(false, false);
 
+            this.CenterOnScreen();
+            //SetBgImage();
+
             //显示LaunchPage
             MainFrame.Navigate(typeof(Pages.LaunchPage));
-            pageNum = 0;
-            this.CenterOnScreen();
+            pageNo = 0;
         }
 
-        public void GetAppWindowAndPresenter()
+        private void SetBgImage()
+        {
+            //var uri = new Uri("pack://application:,,,/Assets/defaultBG.png", UriKind.Absolute);
+            var uri = new Uri("/Assets/defaultBG.png", UriKind.Relative);
+            var img = new BitmapImage(uri);
+            Image_BG.Source = img;
+        }
+
+        private void GetAppWindowAndPresenter()
         {
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
@@ -85,22 +101,22 @@ namespace GenshinLauncher
 
         private void TitleBarButton_Setting_Click(object sender, RoutedEventArgs e)
         {
-            if (pageNum == 0)
+            if (pageNo == 0)
             {
                 MainFrame.Navigate(typeof(Pages.SettingPage));
-                pageNum = 1;
+                pageNo = 2;
                 return;
             }
-            if (pageNum == 1)
-            {
-                MainFrame.GoBack();
-                pageNum = 2;
-                return;
-            }
-            if (pageNum == 2)
+            if (pageNo == 1)
             {
                 MainFrame.GoForward();
-                pageNum = 1;
+                pageNo = 2;
+                return;
+            }
+            if (pageNo == 2)
+            {
+                MainFrame.GoBack();
+                pageNo = 1;
                 return;
             }
         }

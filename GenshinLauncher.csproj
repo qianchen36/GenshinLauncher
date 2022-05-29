@@ -12,29 +12,33 @@
     <AppxPackage>false</AppxPackage>
     <WindowsPackageType>None</WindowsPackageType>
     <NeutralLanguage>zh-CN</NeutralLanguage>
-    <ApplicationIcon>Images\Logo.ico</ApplicationIcon>
     <PlatformTarget>x64</PlatformTarget>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
     <DebugType>full</DebugType>
+    <StartupObject></StartupObject>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <SignAssembly>False</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Pages\SettingPage.xaml" />
-    <None Remove="Pages\Style\PageDictionary.xaml" />
+    <None Remove="config.ini" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\DefaultBG.png" />
-    <Content Include="Images\Logo.ico" />
+    <Content Include="config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Logo.ico" />
-    <Content Include="Images\Logo.png" />
+    <Resource Include="Assets\defaultBG.png" />
+    <Resource Include="Assets\icon.ico" />
+    <Resource Include="Assets\icon.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0-preview3" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.194" />
     <PackageReference Include="PInvoke.User32" Version="0.7.104" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     <PackageReference Include="WinUIEx" Version="1.4.2" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
@@ -44,6 +48,19 @@
        package has not yet been restored -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\SettingPage.xaml">
@@ -59,5 +76,8 @@
     <Page Update="Pages\Style\PageDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>
